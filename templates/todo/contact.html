@@ -1,0 +1,29 @@
+{% extends "skeleton.html" %}
+
+{% block title %}Todo Manager::{{page_title}}{% endblock %}
+
+{% block content %}
+
+    <h2>{{page_title}}</h2>
+
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form method="post" action="">
+            {% csrf_token %}
+
+            <div class="form-group">
+                {{ contact_form.msg_from }}
+                {% if contact_form.msg_from.errors %}<p class="alert alert-warning">{{ contact_form.msg_from.errors.as_text }}</p>{% endif %}
+            </div>
+            <div class="form-group">
+                {{ contact_form.msg_text }}
+                {% if contact_form.msg_text.errors %}<p class="alert alert-warning">{{ contact_form.msg_text.errors.as_text }}</p>{% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary  btn-lg btn-block btn-default">Send</button>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+
+
+
+{% endblock %}

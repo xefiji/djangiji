@@ -1,0 +1,15 @@
+{% extends "skeleton.html" %}
+
+{% block title %}Contactez-nous :){% endblock %}
+
+{% block content %}
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{contact_form.as_p}}
+    <input type="submit" value="envoyer">
+</form>
+
+
+
+{% endblock %}

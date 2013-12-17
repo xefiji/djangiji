@@ -1,0 +1,54 @@
+{% extends "skeleton.html" %}
+
+{% block title %}Todo Manager::{{page_title}}{% endblock %}
+
+{% block content %}
+
+<h2>{{page_title}}</h2>
+<p>Hey</p>
+    <form role="form" action="" method="post">
+        {% csrf_token %}
+{#{{ form.as_p }}#}
+        <div class="form-group">
+            <label for="id_todo_name">Todo Name</label>
+            {{ form.todo_name }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_todo_text">Todo Text</label>
+            {{ form.todo_text}}
+        </div>
+
+        <div class="form-group">
+            <label for="id_todo_date">To be done on</label>
+            {{ form.todo_date}}
+        </div>
+
+
+        <div class="form-group">
+            <label for="id_todo_hour">At</label>
+
+            <select class="" id="id_todo_hour" name="todo_hour">
+                {% for h in hours %}
+                    <option value="{{ h }}">{{ h }}</option>
+                {% endfor %}
+            </select> :
+
+{#        <label for="id_todo_min">At</label>#}
+            <select class="" id="id_todo_min" name="todo_min">
+                {% for m in minutes %}
+                    <option value="{{ m }}">{{ m }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+{#    {{ form.todo_author_id}}#}
+    <div>
+     <button type="submit" class="btn btn-primary  btn-lg btn-block btn-default">Add</button>
+    </div>
+    </form>
+
+
+
+{% endblock %}

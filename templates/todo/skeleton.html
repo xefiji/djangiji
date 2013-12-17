@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{%block title%}{%endblock%}</title>
+    {% load static %}
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="{%static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{%static 'js/datepicker/js/bootstrap-datepicker.js' %}"></script>
+    <script type="text/javascript" src="{%static 'js/script.js' %}"></script>
+    <link href="{%static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all"/>
+    <link href="{%static 'css/bootstrap-theme.css' %}" type="text/css" rel="stylesheet" media="all"/>
+</head>
+<body>
+
+{#Navigation#}
+<div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+{#            <a class="navbar-brand" href="{% url 'todo.views.home'%}"><span class="glyphicon glyphicon-home"></span></a>#}
+            <a class="navbar-brand" href="{% url 'home'%}"><span class="glyphicon glyphicon-home"></span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'todo.views.add'%}"><span class="glyphicon glyphicon-plus-sign"></span></a></li>
+                <li><a href="{% url 'todo.views.contact'%}"><span class="glyphicon glyphicon-envelope"></span></a></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                {% if user.is_authenticated %}
+                    <li><a href=""><span class="glyphicon glyphicon-user"></span>&nbsp;{{ user.username }}</a></li>
+                    <li><a href="{% url 'todo.views.cnx_out'%}"><span class="glyphicon glyphicon-log-out"></span></a></li>
+                {% else %}
+                    <li><a href="{% url 'todo.views.cnx'%}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Not logged</a></li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </nav>
+</div>
+<div class="container" id="content">
+    {% if messages %}
+        {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {%block content%}{%endblock%}
+</div>
+
+<div class="container" id="footer">
+    <hr />
+    <p class="text-center"><small>--- Djangiji's Todo 2k13 ---</small></p>
+    <p class="text-center"><small>[ <a href="/todo/faq">faq</a> {% if user.is_authenticated %}| <a href="renew">change pass</a>{% endif %} ]</small></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{%block title%}{%endblock%}</title>
+    {% load static %}
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="{%static 'js/bootstrap.js' %}"></script>
+    <link href="{%static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all"/>
+    <link href="{%static 'css/bootstrap-theme.css' %}" type="text/css" rel="stylesheet" media="all"/>
+</head>
+<body>
+<h2>{%block page_title%}{%endblock%}</h2>
+<div id="container">
+    {%block content%}{%endblock%}
+</div>
+<hr />
+<div id="footer" style="text-align: center">Footer</div>
+</body>
+</html>

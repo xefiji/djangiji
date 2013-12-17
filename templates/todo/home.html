@@ -1,0 +1,50 @@
+{% extends "skeleton.html" %}
+
+{% block title %}Todo Manager::{{page_title}}{% endblock %}
+
+{% block content %}
+
+    <h2>{{page_title}}</h2>
+
+    {% if todos %}
+        There {{ todos|pluralize:"is,are" }} currently {{ todos.count }} task{{ todos|pluralize }} recorded
+        <table class="table table-bordered">
+            <tr><th>#</th><th>Name</th><th>Content</th><th>To be done on</th><th></th><th></th><th></th></tr>
+            {% for todo in todos %}
+                <form method="post" id="form_{{ todo.id }}" action="{% url 'todo.views.save' todo.id%}">
+                    {% csrf_token %}
+                    <tr class="alert {% if todo.todo_status == 1 %} alert-success {% else %} alert-danger {% endif %}">
+                        <td>
+                            {{ todo.id }}
+                        </td>
+                        <td>
+                            <input name="todo_name" class="form-control" type="text" value="{{ todo.todo_name }}">
+                        </td>
+                        <td>
+                            <input name="todo_text" class="form-control" type="text" value="{{ todo.todo_text }}">
+                        </td>
+                        <td>
+                            {{ todo.todo_ttl }}
+                        </td>
+                        <td>
+                            <a title="delete" href="{% url 'todo.views.remove' todo.id%}"><span class="glyphicon glyphicon-floppy-remove"></span></a>
+                        </td>
+                        <td>
+                            <a title="save" href="" onclick="$('#form_{{ todo.id }}').submit();return false;"><span class="glyphicon glyphicon-floppy-save"></span></a>
+                        </td>
+                        <td>
+                            <a title="toggle status" href="{% url 'todo.views.toggle' todo.id%}"><span class="glyphicon glyphicon-ok"></span></a>
+                        </td>
+                    </tr>
+                </form>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p class="alert alert-warning">No tasks yet</p>
+    {% endif %}
+
+
+
+
+
+{% endblock %}

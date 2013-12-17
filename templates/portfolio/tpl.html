@@ -1,0 +1,32 @@
+{% extends "skeleton.html" %}
+
+{% block title %}Ma page d'accueil{% endblock %}
+
+{% block content %}
+
+<h2>Bienvenue ! Nous sommes le {{current_date}}</h2>
+
+<table class="table-bordered table">
+
+
+
+    {%for user in users%}
+    <!--<h3>Détails pour l'user {{user.id}}</h3>-->
+    <tr><td>{{user.id}}</td><td>{{user.email}}</td><td>{{user.nom}}</td><td>{{user.prenom}}</td><td>{{user.dob}}</td></tr>
+
+    {%empty%}
+    <h4>Ben y'a queude...</h4>
+    {%endfor%}
+
+
+
+</table>
+{%comment%}<a href="{% url 'portfolio.views.view_user' user_id %}">Lien test vers user {{user_id}}</a>{%endcomment%}
+</p>
+
+{%comment%}
+commentaire non visible dans le code source
+{%endcomment%}
+
+
+{% endblock %}
