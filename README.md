@@ -1,4 +1,2 @@
 # djangiji
-a todo list
-
-Blabla
+a todo list in Django (py)
